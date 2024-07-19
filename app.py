@@ -1,22 +1,17 @@
-from flask import Flask, request, render_template
-import os
+document.getElementById('loginForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-app = Flask(__name__)
+    // Get the values from the form
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
-@app.route('/')
-def index():
-    return render_template('login.html')
+    // Save the data to local storage
+    localStorage.setItem('username', username);
+    localStorage.setItem('password', password);
 
-@app.route('/submit', methods=['POST'])
-def submit():
-    username = request.form['username']
-    password = request.form['password']
-    
-    # Save the data to a file
-    with open('user_data.txt', 'a') as f:
-        f.write(f'Username: {username}, Password: {password}\n')
-    
-    return 'Data saved successfully!'
+    // Optionally, display a success message or redirect
+    alert('Data saved successfully!');
 
-if __name__ == '__main__':
-    app.run(debug=True)
+    // Clear the form
+    document.getElementById('loginForm').reset();
+});
